@@ -1,0 +1,84 @@
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner in = new Scanner(System.in);
+    private static GroceryList object = new GroceryList();
+    public static void main(String[] args) {
+
+
+        boolean quit = false;
+        String choice = "";
+        printInstructions();
+
+
+        while (!quit) {
+            System.out.print("Enter your choice: ");
+            choice = in.nextLine();
+           // in.nextLine();
+            switch (choice) {
+                case "help":
+                    printInstructions();
+                    break;
+                case "list":
+                    object.printGroceryList();
+                    break;
+                case "add":
+                    addItem();
+                    break;
+                case "modify":
+                    modifyItem();
+                    break;
+                case "remove":
+                    removeItem();
+                    break;
+                case "search":
+                    searchForItem();
+                    break;
+                case "quit":
+                    quit = true;
+                    break;
+            }
+
+        }
+        }
+    public static void printInstructions() {
+        System.out.println("\nPress ");
+        System.out.println("\t help - To print instructions");
+        System.out.println("\t list - To print grocery list");
+        System.out.println("\t add  - To add an item to the list");
+        System.out.println("\t modify - To modify an item in the list");
+        System.out.println("\t remove - To remove an item from the list");
+        System.out.println("\t search - To search an item from the list");
+        System.out.println("\t quit - To quit the application");
+    }
+
+    public static void addItem () {
+        System.out.print("Please enter a grocery item: ");
+        object.addGroceryItem(in.nextLine());
+    }
+
+    public static void modifyItem () {
+        System.out.print("Enter item number: ");
+        int itemNo = in.nextInt();
+        in.nextLine();
+        System.out.print("Enter replacement item: ");
+        String newItem = in.nextLine();
+        in.nextLine();
+        object.modifyGroceryList(itemNo-1,newItem);
+    }
+
+    public static void removeItem () {
+        System.out.print("Enter item number: ");
+        int itemNo = in.nextInt();
+        in.nextLine();
+        object.removeGroceryItem(itemNo);
+    }
+
+    public static void searchForItem () {
+        System.out.print("Enter item name: ");
+        String searchItem = in.nextLine();
+        in.nextLine();
+        object.findItem(searchItem);
+    }
+}
